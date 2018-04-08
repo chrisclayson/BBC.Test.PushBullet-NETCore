@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  bbc.test.pushbullet:
+    image: bbctest
+    build:
+      context: .
+      dockerfile: BBC.Test.PushBullet/Dockerfile
