@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BBC.Test.PushBullet.Model
+namespace BBC.Test.PushBullet.Model.Entity
 {
     public class Notification
     {

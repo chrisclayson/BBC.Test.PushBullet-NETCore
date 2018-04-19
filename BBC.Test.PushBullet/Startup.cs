@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BBC.Test.PushBullet.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using AutoMapper;
+using BBC.Test.PushBullet.Filter;
 
 namespace BBC.Test.PushBullet
 {
@@ -23,18 +20,20 @@ namespace BBC.Test.PushBullet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc( o => o.Filters.Add<ApiExceptionFilter>() );
+            services.AddSingleton<UserService>();
+            services.AddSingleton<PushBulletService>();
+            services.AddAutoMapper();
+            // services.AddEntityFrameworkInMemoryDatabase();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            // app.UseExceptionHandler();
 
             app.UseMvc();
+
         }
     }
 }
