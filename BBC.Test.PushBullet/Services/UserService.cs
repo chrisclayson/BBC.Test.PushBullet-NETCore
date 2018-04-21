@@ -37,7 +37,7 @@ namespace BBC.Test.PushBullet.Services
 
         public void IncrementMessageCount(string username)
         {
-            lock (users[username])
+            // lock (users[username])
             {
                 users[username].MessageCount++;
             }
